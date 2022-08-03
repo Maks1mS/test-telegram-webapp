@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { Box } from '@quarkly/widgets';
 import { useLogin } from './App';
+const whitelistParams = ['id', 'hash', 'first_name', 'last_name', 'username', 'photo_url', 'auth_date'];
 
 const TelegramWebApp = props => {
 	const login = useLogin();
