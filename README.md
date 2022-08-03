@@ -17,6 +17,11 @@
          alt="Create React App version" />
   </a>
   
+  <a href="https://github.com/Maks1mS/test-telegram-webapp/pulls">
+    <img src="https://badgen.net/github/prs/Maks1mS/test-telegram-webapp" alt="Pull Request Amount">
+  </a>
+  <img src="https://badgen.net/github/last-commit/Maks1mS/test-telegram-webapp" alt="Last commit date" />
+            
   <a href="./LICENSE">
     <img src="https://badgen.net/badge/license/MIT/blue"
          alt="License">

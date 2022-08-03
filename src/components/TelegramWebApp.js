@@ -14,6 +14,7 @@ const TelegramWebApp = props => {
 		};
 	}, []);
 	return <Box {...props}>
+		TelegramWebApp: 
 		{JSON.stringify(window?.Telegram?.WebApp?.initData?.user)}
 	</Box>;
 };
