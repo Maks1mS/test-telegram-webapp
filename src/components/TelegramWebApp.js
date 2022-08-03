@@ -12,6 +12,7 @@ const TelegramWebApp = props => {
 
 		if (tg?.initDataUnsafe?.user) {
 			data.hash = tg?.initDataUnsafe?.hash;
+			data.auth_date = tg?.initDataUnsafe?.auth_date;
 			params = new URLSearchParams(tg?.initDataUnsafe?.user);
 		} else {
 			params = new URLSearchParams(window.parent.location.search);
