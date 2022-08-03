@@ -7,26 +7,26 @@ const TelegramWebApp = props => {
 	const login = useLogin();
 	const onLoad = useCallback(() => {
 		const tg = window?.Telegram?.WebApp;
+		const data = {};
+		let params = new URLSearchParams();
 
 		if (tg?.initDataUnsafe?.user) {
-			login({
-				hash: tg?.initDataUnsafe?.hash,
-				...tg?.initDataUnsafe?.user
-			});
+			data.hash = tg?.initDataUnsafe?.hash;
+			params = new URLSearchParams(tg?.initDataUnsafe?.user);
 		} else {
-			const params = new URLSearchParams(window.parent.location.search);
-			const data = {};
-			whitelistParams.forEach(k => {
-				const v = params.get(k);
+			params = new URLSearchParams(window.parent.location.search);
+		}
 
-				if (v) {
-					data[k] = v;
-				}
-			});
+		whitelistParams.forEach(k => {
+			const v = params.get(k);
 
-			if (data.hash) {
-				login(data);
+			if (v) {
+				data[k] = v;
 			}
+		});
+
+		if (data.hash) {
+			login(data);
 		}
 	}, []);
 	useEffect(() => {
