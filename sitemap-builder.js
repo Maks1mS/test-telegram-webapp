@@ -33,6 +33,6 @@ class UniqueSitemap extends Sitemap {
 
 (
     new UniqueSitemap(router())
-        .build('https://moonlit-haupia-94f2c8.netlify.app')
+        .build('https://test-telegram-webapp.netlify.app')
         .save('./public/sitemap-index.xml')
 );

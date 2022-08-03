@@ -16,6 +16,7 @@ export default (() => {
 			<link rel={"shortcut icon"} href={"https://uploads.quarkly.io/readme/cra/favicon-32x32.ico"} type={"image/x-icon"} />
 		</Helmet>
 		<Components.TelegramWebApp />
+		<Components.UserInfo />
 		<RawHtml>
 			<style place={"endOfHead"} rawKey={"62ea8a6621e43d002097ba84"}>
 				{":root {\n  box-sizing: border-box;\n}\n\n* {\n  box-sizing: inherit;\n}"}

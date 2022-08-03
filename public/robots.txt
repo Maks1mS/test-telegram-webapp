@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://moonlit-haupia-94f2c8.netlify.app/sitemap-index.xml
+Sitemap: https://test-telegram-webapp.netlify.app/sitemap-index.xml
