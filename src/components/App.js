@@ -61,11 +61,13 @@ const useToken = () => {
 };
 
 export const useUser = () => {
+	// const isReady = useIsReady()
 	const token = useToken();
 	const {
 		data,
 		error
 	} = useSWR('/v1/users/me', fetchUser);
+	console.log('useUser');
 
 	if (data && data !== 'unauthorized') {
 		const type = token.get('type');
