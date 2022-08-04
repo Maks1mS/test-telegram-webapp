@@ -76,6 +76,8 @@ export const useUser = () => {
 			});
 		} else if (type === 'webapp') {
 			const tgUser = token.get('user');
+			console.log('TGUSER');
+			console.log(tgUser);
 			Object.assign(data, {
 				tg: JSON.parse(tgUser)
 			});
