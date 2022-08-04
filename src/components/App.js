@@ -17,7 +17,7 @@ const fetchWithToken = async endpoint => {
 	const token = loadUserData();
 	const res = await fetch(`${API.API_URL}${endpoint}`, {
 		headers: {
-			'Authorization': `Bearer ${token}`
+			'Authorization': `Bearer ${token.toString()}`
 		}
 	});
 
