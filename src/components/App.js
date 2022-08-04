@@ -61,15 +61,13 @@ const useToken = () => {
 };
 
 export const useUser = () => {
-	// const isReady = useIsReady()
-	const token = useToken();
 	const {
 		data,
 		error
 	} = useSWR('/v1/users/me', fetchUser);
-	console.log('useUser');
 
 	if (data && data !== 'unauthorized') {
+		const token = loadUserData();
 		const type = token.get('type');
 
 		if (type === 'login_widget') {
