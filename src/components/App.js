@@ -43,19 +43,21 @@ const fetchUser = async endpoint => {
 
 const TG_USER_DATA_KEY = "isleepbot_tg_user_data";
 export const loadUserData = () => {
-	return Cookies.get(TG_USER_DATA_KEY);
+	return new URLSearchParams(Cookies.get(TG_USER_DATA_KEY));
 };
 export const saveUserData = data => {
+	console.log('SAVE USER DATA', data.toString());
+
 	if (data == null) {
 		Cookies.remove(TG_USER_DATA_KEY);
 	} else {
-		Cookies.set(TG_USER_DATA_KEY, JSON.stringify(data));
+		Cookies.set(TG_USER_DATA_KEY, data.toString());
 	}
 };
 
 const useToken = () => {
 	const [cookies, setCookie, removeCookie] = useCookies([TG_USER_DATA_KEY]);
-	return cookies[TG_USER_DATA_KEY];
+	return new URLSearchParams(cookies[TG_USER_DATA_KEY]);
 };
 
 export const useUser = () => {
@@ -66,11 +68,18 @@ export const useUser = () => {
 	} = useSWR('/v1/users/me', fetchUser);
 
 	if (data && data !== 'unauthorized') {
-		const token = loadUserData();
-		const tg = JSON.parse(token);
-		Object.assign(data, {
-			tg
-		});
+		const type = token.get('type');
+
+		if (type === 'login_widget') {
+			Object.assign(data, {
+				tg: Object.fromEntries(token)
+			});
+		} else if (type === 'webapp') {
+			const tgUser = token.get('user');
+			Object.assign(data, {
+				tg: JSON.parse(tgUser)
+			});
+		}
 	}
 
 	return [data === 'unauthorized' ? null : data, !error && !data, error];

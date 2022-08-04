@@ -6,28 +6,29 @@ const whitelistParams = ['id', 'hash', 'first_name', 'last_name', 'username', 'p
 const TelegramWebApp = props => {
 	const login = useLogin();
 	const onLoad = useCallback(() => {
-		const tg = window?.Telegram?.WebApp;
+		const tgWebApp = window?.Telegram?.WebApp;
 		const data = {};
 		let params = new URLSearchParams();
 
-		if (tg?.initDataUnsafe?.user) {
-			data.hash = tg?.initDataUnsafe?.hash;
-			data.auth_date = tg?.initDataUnsafe?.auth_date;
-			params = new URLSearchParams(tg?.initDataUnsafe?.user);
+		if (tgWebApp?.initData) {
+			params = new URLSearchParams(tgWebApp.initData);
+			params.set('type', 'webapp');
+			login(params);
 		} else {
 			params = new URLSearchParams(window.parent.location.search);
-		}
+			whitelistParams.forEach(k => {
+				const v = params.get(k);
 
-		whitelistParams.forEach(k => {
-			const v = params.get(k);
+				if (v) {
+					data[k] = v;
+				}
+			});
 
-			if (v) {
-				data[k] = v;
+			if (data.hash) {
+				params = new URLSearchParams(data);
+				params.set('type', 'login_widget');
+				login(params);
 			}
-		});
-
-		if (data.hash) {
-			login(data);
 		}
 	}, []);
 	useEffect(() => {

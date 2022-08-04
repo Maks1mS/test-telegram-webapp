@@ -8,7 +8,7 @@ const UserInfo = props => {
 		    
 		{loading}
 		    
-		{error}
+		{JSON.stringify(error)}
 		    
 		{JSON.stringify(user)}
 		  

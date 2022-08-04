@@ -17,6 +17,7 @@ export default (() => {
 		</Helmet>
 		<Components.TelegramWebApp />
 		<Components.UserInfo />
+		<Components.TelegramLoginButton />
 		<RawHtml>
 			<style place={"endOfHead"} rawKey={"62ea8a6621e43d002097ba84"}>
 				{":root {\n  box-sizing: border-box;\n}\n\n* {\n  box-sizing: inherit;\n}"}
